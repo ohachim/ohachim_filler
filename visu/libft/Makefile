@@ -159,10 +159,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	@rm -vf $(OBJ)
+	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
 
 fclean: clean
-	@rm -vf $(NAME)
-
-re: fclean all
+	rm -fv $(NAME) 

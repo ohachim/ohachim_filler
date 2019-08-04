@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-INCS = ft_player_put.c \
+SRC_PATH = src
+
+SRC_NAME = ft_player_put.c \
 		ft_make_board.c \
 		ft_skip_line.c \
 		ft_make_token.c \
@@ -22,35 +24,70 @@ INCS = ft_player_put.c \
 		ft_brute_force.c \
 		ft_heatmap.c \
 		ft_brute_forceu.c \
-		ft_brute_forcel.c
-OBJ = ft_player_put.o \
-		ft_make_board.o \
-		ft_skip_line.o \
-		ft_make_token.o \
-		ft_play.o \
-		ft_strdel_imp.o \
-		ft_dsculpt_token.o \
-		ft_sculpt_y.o \
-		ft_valid_holder.o \
-		ft_brute_force.o \
-		ft_heatmap.o \
-		ft_brute_forceu.o \
-		ft_brute_forcel.o
-FLAGS = -Wall -Werror -Wextra
-LNAME = libfit.a
+		ft_brute_forcel.c \
+		ft_filler.c \
+		ft_out_data.c \
+		ft_bad_char.c
+
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+
+OBJ_PATH = obj
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+
+CPPFLAGS =-Iinclude -Ilibft/include
+
+LDFLAGS = -Llibft
+
+LDLIBS = -lft
+
 NAME = ohachim.filler
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+.PHONY: all, clean, fclean, re
+
 all: $(NAME)
-$(NAME):
-	@make -C libft
-	@gcc -c $(FLAGS) $(INCS)
-	@ar rc $(LNAME) $(OBJ)
-	@ranlib $(LNAME)
-	@gcc $(FLAGS) ft_filler.c $(LNAME) -o $(NAME) -L libft -lft
-clean :
-	@rm -f $(OBJ) $(LNAME)
+
+visua:
+	@make -C visu
+
+visuc:
+	@cd visu ; make clean
+
+visufc:
+	@cd visu ; make fclean
+
+visur:
+	@cd visu ; make re
+
+both: all visua
+
+bothc: clean visuc
+
+bothfc: fclean visufc
+
+bothr: re visur
+
+$(NAME): $(OBJ)
+	@cd libft ; make
+	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+clean:
 	@make -C libft clean
-fclean : clean
-	@rm -f $(NAME)
+	@rm -vf $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
+
+fclean: clean
 	@make -C libft fclean
-re : fclean all
-	@make -C libft re
+	@rm -vf $(NAME)
+
+re: fclean all

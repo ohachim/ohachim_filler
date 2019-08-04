@@ -6,46 +6,76 @@
 #    By: ohachim <ohachim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 02:54:22 by ohachim           #+#    #+#              #
-#    Updated: 2019/07/25 17:26:35 by ohachim          ###   ########.fr        #
+#    Updated: 2019/08/01 11:04:04 by ohachim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = sdl2lib/ft_sdlclose_ws.c \
-		sdl2lib/ft_init_sdlri.c \
-		sdl2lib/ft_draw_board.c \
-		sdl2lib/ft_get_players.c \
-		sdl2lib/ft_get_event.c \
-		sdl2lib/ft_get_ox.c \
-		sdl2lib/ft_get_scores.c \
-		sdl2lib/ft_visu_score.c
-OBJ = ft_sdlclose_ws.o \
-	  ft_init_sdlri.o \
-	  ft_draw_board.o \
-	  ft_get_players.o \
-	  ft_get_event.o \
-	  ft_get_ox.o \
-	  ft_get_scores.o \
-	  ft_visu_score.o
-LIB = -L /Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/lib -lSDL2-2.0.0 -lSDL2 \
-		-L /Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/lib -lSDL2_image \
-		-lSDL2_image-2.0.0 \
-		-L lib -lft -lfit \
-		-L /Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/lib -lSDL2_ttf \
-	   	-lSDL2_ttf-2.0.0
-INC = -I/Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/include/SDL2 \
-	  -I/Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/include/SDL2 \
-	  -I/Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2
-FLAGS = -Wall -Werror -Wextra
-LNAME = libsd.a
+SRC_PATH = src
+
+SRC_NAME = ft_sdlclose_ws.c \
+	   ft_init_sdlri.c \
+	   ft_draw_board.c \
+	   ft_get_players.c \
+	   ft_get_event.c \
+	   ft_get_ox.c \
+	   ft_get_scores.c \
+	   ft_visu_score.c \
+	   ft_visu.c \
+	   ft_skip_line.c \
+	   ft_make_board.c \
+	   ft_make_token.c \
+	   ft_strdel_imp.c \
+	   ft_dsculpt_token.c \
+	   ft_free_datav.c \
+	   ft_visualization.c
+
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+
+OBJ_PATH = obj
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+
+LDFLIBS = -L /Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/lib -lSDL2-2.0.0 -lSDL2 \
+	  -L /Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/lib -lSDL2_image \
+	  -lSDL2_image-2.0.0 \
+	  -L /Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/lib -lSDL2_ttf \
+	  -lSDL2_ttf-2.0.0 \
+	  -L libft -lft
+
+
+CPPFLAGS = -I /Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/include/SDL2 \
+	   -I /Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/include/SDL2 \
+	   -I /Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2 \
+	   -I include \
+	   -I libft/include \
+
+CC = gcc
+
+CFLAGS = -Wall -Werror -Wextra
+
 NAME = visu_filler
+
+.PHONY: all, clean, fclean, re
+
 all: $(NAME)
-$(NAME):
-	@gcc -c $(FLAGS) $(SRC) $(INC)
-	@ar rc $(LNAME) $(OBJ)
-	@ranlib $(LNAME)
-	@gcc $(FLAGS) game.c $(LNAME) -o $(NAME) $(LIB) $(INC)
-clean :
-	@rm -f $(OBJ) $(LNAME)
-fclean : clean
-	@rm -f $(NAME)
-re : fclean all
+
+$(NAME): $(OBJ)
+	@cd libft ; make
+	$(CC) $(LDFLIBS) $^ -o $@
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+clean:
+	@make -C libft clean
+	@rm -vf $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
+
+fclean: clean
+	@make -C libft fclean
+	@rm -vf $(NAME)
+
+re: fclean all
