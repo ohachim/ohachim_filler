@@ -6,7 +6,7 @@
 /*   By: ohachim <ohachim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:44:19 by ohachim           #+#    #+#             */
-/*   Updated: 2019/08/01 11:23:34 by ohachim          ###   ########.fr       */
+/*   Updated: 2019/12/28 11:11:22 by ohachim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ int			main(int argc, char **argv)
 						, &(vis.tmessage));
 		return (ft_free_datav(&data, &vis));
 	}
-	if (!(vis.font = TTF_OpenFont("/Users/ohachim/filler/visu/media/orange.ttf"
-								, 40)))
+	if (!(vis.font = TTF_OpenFont("media/orange.ttf"
+								, 200)))
 		return (ft_free_datav(&data, &vis));
 	ft_main_loop(&vis, &data, 0, 0);
 	ft_free_datav(&data, &vis);
