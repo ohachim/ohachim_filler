@@ -49,6 +49,15 @@ This will launch a battle between ohachim.filler and carli.filler in the smalles
 # VISUALISATOR
 Made using sdl2
 
+Requirements:
+  * brew install sdl2
+  * brew install sdl2_image
+  * brew install sdl2_ttf
+  
+Runs using output from the launching the vm battle.
+
+./filler_vm -f maps/map00 -p1 ./ohachim.filler -p2 players/carli.filler | visu/filler_visu
+
 P: pause
 space: resume
 arrow_up: speed up
