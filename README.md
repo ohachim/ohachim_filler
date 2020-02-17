@@ -34,11 +34,11 @@ Mid fight example:
 
 The VM (filler_vm), extra players and maps are provided in the folder resources.
 
-* make
+* make\
   will compile ohachim.filler executable, and visualisator (visu_filler) in folder visu.
-* make re
+* make re\
   will recompile ohachim.filler executable.
-* make bothr
+* make bothr\
   will recompile both visualisator and executable.
   
 Launch:
