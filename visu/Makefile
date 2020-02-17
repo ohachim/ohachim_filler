@@ -6,7 +6,7 @@
 #    By: ohachim <ohachim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 02:54:22 by ohachim           #+#    #+#              #
-#    Updated: 2019/08/01 11:04:04 by ohachim          ###   ########.fr        #
+#    Updated: 2020/02/17 22:45:02 by ohachim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,17 +37,17 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
-LDFLIBS = -L /Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/lib -lSDL2-2.0.0 -lSDL2 \
-	  -L /Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/lib -lSDL2_image \
+LDFLIBS = -L sdl2/2.0.10/lib -lSDL2-2.0.0 -lSDL2 \
+	  -L sdl2_image/2.0.5/lib -lSDL2_image \
 	  -lSDL2_image-2.0.0 \
-	  -L /Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/lib -lSDL2_ttf \
+	  -L sdl2_ttf/2.0.15/lib -lSDL2_ttf \
 	  -lSDL2_ttf-2.0.0 \
 	  -L libft -lft
 
 
-CPPFLAGS = -I /Users/ohachim/.brew/Cellar/sdl2_image/2.0.5/include/SDL2 \
-	   -I /Users/ohachim/.brew/Cellar/sdl2/2.0.9_1/include/SDL2 \
-	   -I /Users/ohachim/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2 \
+CPPFLAGS = -I sdl2_image/2.0.5/include/SDL2 \
+	   -I sdl2/2.0.10/include/SDL2 \
+	   -I sdl2_ttf/2.0.15/include/SDL2 \
 	   -I include \
 	   -I libft/include \
 
