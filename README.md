@@ -47,9 +47,16 @@ Launch:
 This will launch a battle between ohachim.filler and carli.filler in the smallest map.
 
 # VISUALISATOR
-
 Made using sdl2
 
+P: pause
+space: resume
+arrow_up: speed up
+arrow_down: speed down
+esc/q: quit
 
-  
+Examples:
 
+![](https://github.com/ThatKstho/ohachim_filler/blob/master/visu1)
+
+![](https://github.com/ThatKstho/ohachim_filler/blob/master/visu1)
