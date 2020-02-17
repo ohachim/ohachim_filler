@@ -59,4 +59,4 @@ Examples:
 
 ![](https://github.com/ThatKstho/ohachim_filler/blob/master/visu1)
 
-![](https://github.com/ThatKstho/ohachim_filler/blob/master/visu1)
+![](https://github.com/ThatKstho/ohachim_filler/blob/master/visu2)
