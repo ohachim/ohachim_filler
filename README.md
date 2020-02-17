@@ -11,50 +11,14 @@ the games is a similar to tic-tac-toe.
 3. The game ends when both players can't play anymore.
 4. The player with most points win.
 
-example board and token:
-
-Plateau 14 30:
-012345678901234567890123456789
-
-000 ..............................
-
-001 ..............................
-
-002 ..X...........................
-
-003 ..............................
-
-004 ..............................
-
-005 ..............................
-
-006 ..............................
-
-007 ..............................
-
-008 ..............................
-
-009 ..............................
-
-010 ..............................
-
-011 ...........................O..
-
-012 ..............................
-
-013 ..............................
-
-Piece 4 7:
-
-...*...
-
-...*...
-
-...*...
-
-..***..
-
+![](https://github.com/ThatKstho/ohachim_filler/blob/master/board_example)
 
 # ALORITHM
+
+1. The program scores the board, the closer the spot is to the enemy pieces to better it is.
+2. The program then tries to choose a spot with the best possible score.
+For a spot to be valid, the token must crush at least and at most 1 of the program's own pieces.
+
+Board scoring example:
 
 ![](https://github.com/ThatKstho/ohachim_filler/blob/master/algo_example)
