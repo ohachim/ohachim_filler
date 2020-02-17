@@ -22,3 +22,10 @@ For a spot to be valid, the token must crush at least and at most 1 of the progr
 Board scoring example:
 
 ![](https://github.com/ThatKstho/ohachim_filler/blob/master/algo_example)
+
+3. This helps the program navigate closer to the enemy wich gives of the effect of the program circling the enemy pieces.
+
+Mid fight example:
+
+![](https://github.com/ThatKstho/ohachim_filler/blob/master/mid_algo)
+
